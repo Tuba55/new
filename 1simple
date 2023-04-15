@@ -37,7 +37,7 @@ CreateFlags.HardwareVertexProcessing, pp);
  {
  
  }
- private void Form_paint(object sender, PaintEventArgs e)
+ private void Form1_paint(object sender, PaintEventArgs e)
  {
  Render();
  }
