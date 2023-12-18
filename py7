@@ -1,1 +1,185 @@
+Aim:Program based on Inheritance
 
+1.Let's take Vehicle_Tuba as a parent class from which we will derive a class Category. Category class will inherit the feature of parent class Vehicle_Tuba and also  invoke the function form the parent class.
+
+Code:
+#Parent class
+class Vehicle_Tuba:
+    def __init__(self,brand,model):
+        self.brand = brand
+        self.model = model
+    def display_info(self):
+        return f"{self.brand} {self.model}
+#Child class
+class Category(Vehicle_Tuba):
+    def __init__(self,brand,model,category):
+        #Calling the constructor of the parent calss
+        super().__init__(brand,model)
+        self.category = category
+    def display_category_info(self):
+        #Invoking the function from the parent class
+        vehicle_info = self.display_info()
+        return f"{vehicle_info} - Category:{self.category}"
+#Creating an instance of the child class
+#Using methods from both parent and chlid class 
+car = Category("Toyota","Camry","Sedan")
+print(car.display_info())
+print(car.display_category_info())
+
+Output:
+ 
+
+2. Let's Consider another example where we have a Person class as the parent class and a Student class as the child class inheriting from person.The student class will also have its own method.
+
+Code:
+#Parent class
+class Person:
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    def display_info(self):
+        return f"Name:{self.name},Age:{self.age}
+#Child class
+class Student(Person):
+    def __init__(self,name,age,student_id):
+        #Calling the constructor of the parent calss
+        super().__init__(name,age)
+        self.student_id = student_id
+    def display_student_info(self):
+        #Invoking the function from the parent class
+        person_info = self.display_info()
+        return f"{person_info},Student ID:{self.student}
+    def study(self,subject):
+        return f"{self.name} is studying {subject}."    
+#Creating an instance of the child class
+student = Student("Tuba","20","S12345")
+#Using methods from both parent and chlid class
+print(student.display_info())
+print(student.display_student_info())
+
+Output:
+ 
+
+
+3.Lets consider another example where we have a Shape class as the parent class and Circle and Rectangle classes as child classes inheriting from shape.Each class will have its own Methods and we’ll demonstrate polymorphism by calling a common method on objects of different types.
+
+Code:
+#parent class
+class Shape:
+    def _init_(self, color):
+        self.color = color
+    def area(self):
+        pass #This method will be overridden by subclasses
+#child class 1
+class Circle(Shape):
+    def _init_(self, color, radius):
+        super()._init_(color)
+        self.radius = radius
+    def area(self):
+        return 3.14*self.radius**2
+#child class 2
+class Rectangle(Shape):
+    def _init_(self, color, length, width):
+        super()._init_(color)
+        self.length = length
+        self.width = width
+    def area(self):
+        return self.length * self.width
+#Function demonstrating Polymorphism
+def display_area(shape):
+    return f"Area: {shape.area()} square units"
+#Creating instances of the child classes
+circle = Circle("Red", 5)
+rect = Rectangle("Blue", 4, 6)
+#using polymorphism by calling the common method
+print(display_area(circle))
+print(display_area(rect))
+
+        
+
+Output:
+
+4.Let’s consider an example with an Employee class as the parent class and Manager and Developer classes as child classes inheriting from Employee .Each  class will have its own attributes and methods
+
+Code:
+#parent class
+class Employee:
+    def __init__(self,name,employee_id,salary):
+        self.name=name
+        self.employee_id=employee_id
+        self.salary=salary
+    def display_info(self):
+        return f"Name: {self.name},ID:{self.employee_id},Salary:${self.salary}"
+#child class1
+class Manager(Employee):
+    def __init__(self,name,employee_id,salary,team_size):
+        super().__init__(name,employee_id,salary)
+        self.team_size=team_size
+    def display_info(self):
+       #overriding the display_info method from the parent class
+       return f"{super().display_info()},Team Size:{self.team_size}"
+    def conduct_meeting(self):
+        return f"{self.name} is conducting a meeting."
+#child class 2
+class Developer(Employee):
+    def __init__(self,name,employee_id,salary,programming_language):
+        super().__init__(name,employee_id,salary)
+        self.programming_language=programming_language
+    def display_info(self):
+        #overriding the display_info method from the parent class
+        return f"{super().display_info()},Programming Language:{self.programming_language}"
+    def write_code(self):
+        return f"{self.name} is writing code in {self.programming_language}."
+#craeting instance of the child classes
+manager=Manager("Tuba","M123",80000,10)
+developer=Developer("Alice Smith","D456",60000,"Python")
+#using methods from botj parent and child classes
+print(manager.display_info())
+print(manager.conduct_meeting())
+print(developer.display_info())
+print(developer.write_code())
+
+
+Output:
+5.Let’s explore another example with an employee class as the parent class and the two different types of employee Hourly employee and Salaried employee as child classes.Each child class will have its own method,and we’ll use the parent class to demonstrate common functionality.
+
+Code:
+#parent class
+class Employee:
+    def __init__(self,name,employee_id):
+        self.name=name
+        self.employee_id = employee_id
+    def display_info(self):
+        return f"Name: {self.name},ID:{self.employee_id}"
+#child class1
+class HourlyEmployee(Employee):
+    def __init__(self,name,employee_id,hourly_rate,hours_worked):
+        super().__init__(name,employee_id)
+        self.hourly_rate=hourly_rate
+        self.hours_worked = hours_worked
+    def calc_sal(self):
+        return self.hourly_rate * self.hours_worked
+    def display_info(self):
+       #overriding the display_info method from the parent class
+       return f"{super().display_info()}, Type: Hourly Employee"
+#child class 2
+class SalariedEmployee(Employee):
+    def __init__(self,name,employee_id,salary):
+        super().__init__(name,employee_id)
+        self.salary=salary
+    def calc_sal(self):
+        return self.salary
+    def display_info(self):
+        #overriding the display_info method from the parent class
+        return f"{super().display_info()},Type: Salaried Emplopyee"
+#creating instance of the child classes
+he=HourlyEmployee("John Doe","H123",15,40)
+se=SalariedEmployee("Alice Smith","S456",60000)
+#using methods from both parent and child classes
+print(he.display_info())
+print(f"Hourly Employee Salary: ${he.calc_sal()}")
+
+print(se.display_info())
+print(f"Salaried Employee Salary: ${se.calc_sal()}")
+
+Output:
