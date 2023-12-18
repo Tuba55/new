@@ -1,0 +1,55 @@
+AIM: Implement Exception handling in Java
+We know that exceptions abnormally terminate the execution of a program.
+Therefore, it is important to handle exceptions. Here's a list of different approaches to handle exceptions in Java.
+1) try...catch block
+Theory: A try block is the block of code (contains a set of statements) in which exceptions can occur; it's used to enclose the code that might throw an exception.
+Code:
+class Exception {
+public static void main(String args[]){ try{
+int divideByZero = 5/0;
+System.out.println("Rest of code in try block");
+}
+catch(ArithmeticException e){
+System.out.println("ArithmeticException =>" +e.getMessage());
+}
+}
+}
+Output:
+ 
+
+2) finally block
+Theory:The finally block in java is used to put important codes such as clean up code e.g. closing the file or closing the connection. The finally block executes whether exception rise or not and whether exception handled or not.
+Code: public class Exception1{
+public static void main(String args[]){ try{
+int divideByZero = 5/0;
+} finally{
+System.out.println("Finally block is alway executed");
+}
+}
+}
+Output:
+
+
+
+3)Multiple catch block:
+Code:
+class ListOfNumbers { public int[] arr = new int[10]; public void writeList(){
+try {
+arr[10] = 11;
+}
+catch(NumberFormatException el) {
+System.out.println("NumberFormatException =>" +el.getMessage());
+}
+catch(IndexOutOfBoundsException e2){
+System.out.println("IndexOutOfBoundsException =>"+e2.getMessage());
+}
+}
+}
+class Multiple Catch{
+public static void main(String args[]){ ListOfNumbers list = new ListOfNumbers();
+list.writeList();
+}
+}
+Output:
+  
+                                     
