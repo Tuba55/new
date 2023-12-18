@@ -1,0 +1,54 @@
+Aim:Probability and conditional probability
+Theory:Conditional probability is known as the possibility of an event or outcome happening, based on the existence of a previous event or outcome. It is calculated by multiplying the probability of the preceding event by the renewed probability of the succeeding, or conditional, event.
+prob package:A framework for performing elementary probability calculations on finite sample spaces, which may be represented by data frames or lists.
+
+*Some Standard Sample Spaces:
+>tosscoin(1) toss1
+
+The number 1 tells tosscoin() that we only want to toss the coin once
+>tosscoin(3) toss1 toss2 toss3
+
+> rolldie(1)
+
+The rolldie() function defaults to a 6-sided die, but we can change it with the nsides argument
+>rolldie(3, nsides = 4) would be for rolling a 4-sided die three times.
+> cards() rank suit
+
+* Set Union, Intersection, and Difference
+> S <- cards()
+> A <- subset(S, suit == "Heart")
+> B <- subset(S, rank %in% 7:9)
+> print(A) rank suit 27	2 Heart
+
+> print(B) rank	suit
+
+> union(A,B) rank suit
+
+> intersect(A,B) rank suit
+
+
+> setdiff(S,A)	\\complement of A rank	suit
+
+
+> setdiff(A,B) rank suit
+
+> setdiff(S,B)	\\complement of B rank	suit
+
+
+*Calculating Probabilities
+> S <- cards(makespace = TRUE)
+> A <- subset(S, suit == "Heart")
+> B <- subset(S, rank %in% 7:9)	//in is to match the numbers from 7 to 9
+> print(S)
+
+Q.)Toss a six-sided die twice. Find the probability for the events.
+
+A = {outcomes match} and B = {sum of outcomes is least 8} Code:
+>S <- rolldie(2, makespace = TRUE)
+>head(S) or >tail(S) or
+>print(S)
+>A <- subset(S, X1 == X2) \\ matching numbers on both dices
+>B <- subset(S, X1 + X2 >= 8)	\\ number greater than or equals to 8
+\\ prob of A= 6/36
+\\ prob of B=15/36
+\\ p(A|B)= p(AnB)/p(B)	// prob of A given B
