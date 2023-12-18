@@ -1,46 +1,177 @@
-using System; using System.Collections.Generic; using System.ComponentModel; using System.Data; 
-using System.Drawing; using System.Text; using System.Windows.Forms; using Microsoft.DirectX; using Microsoft.DirectX.Direct3D; 
+Aim:Program based on Packages
+
+1.Program based on Control Structures
+●	Condition checking
+●	if
+●	for
+●	while
+●	continue and break
+
+1.Condition Checking
+
+a)Code:
+#Simple and combination of test
+num = 5
+print(num>25)
+
+b) Code:
+
+#Simple and combination of test
+num = 5
+print(num>3 and num<=5)
+
+c) Code:
+
+#Simple and combination of test
+num = 5
+print(3<num<=5)
+
+d)Code:
+
+#Simple and combination of test
+num = 5
+print(num%3 ==0 or num% 5 ==0)
+
+e)Code:
+
+fav_fiction_tuba = 'Harry Potter'
+fav_detective_tuba = 'Sherlock Holmes'
+print(fav_fiction_tuba == fav_detective_tuba)  
+
+f)Code:
+
+fav_fiction_tuba = 'Harry Potter'
+print(fav_fiction_tuba == 'Harry Potter')
+
+g)Code:
+num = 5
+print(bool(num))
+
+h) Code:
+fav_detective = 'Sherlock Holmes'
+print(bool(fav_detective))
+
+i) Code:
+
+print(bool(3))
+print(bool(0))
+print(bool(None))
+
+2. If
+a)Code:
+if-1:
+    print("-1 evaluates to True in condition Checking")
+
+b)Code:
+def num_chk_tuba(n):
+    if n == 10 or n == 21 or n == 33:
+        print("Number passes condition")
+    else:
+        print("Number fails condition")
+num_chk_tuba(10)  
+
+c)Code:
+def num_chk_tuba(n):
+    if n == 5 or n == 15 or n == 25:
+        print("Number passes condition")
+    else:
+        print("Number fails condition")
+num_chk_tuba(12)            
+
+d)Code:
+
+def num_chk2_tuba(n):
+    if n in (10,21,33):
+        print("Number passes condition")
+    else:
+        print("Number fails condition")
+num_chk2_tuba(10) 
+
+e)Code:
+
+def num_chk2_tuba(n):
+    if n in (10,21,33):
+        print("Number passes condition")
+    else:
+        print("Number fails condition")
+num_chk2_tuba(12)  
+
+f.Code:
+num = 45
+#only if
+if num> 25:
+    print("Hurray! {} is greater that 25".format(num))
+
+3 if else
+a)Code:
+#if_else
+num = 21
+if num%2 == 0:
+    print("{} is an even number".format(num))
+else:
+    print("{} is an odd number".format(num))
+
+Output:
  
-namespace practical3 
-{ 
-    public partial class Form1 : Form 
-    { 
-        Microsoft.DirectX.Direct3D.Device device; 
-        private CustomVertex.PositionTextured[] vertex = new 
-CustomVertex.PositionTextured[3];         private Texture texture;         public Form1() 
-        { 
-            InitializeComponent(); 
-            InitDevice(); 
-        } 
-        private void InitDevice() 
-        { 
-            PresentParameters pp = new PresentParameters();             pp.Windowed = true; 
-            pp.SwapEffect = SwapEffect.Discard; 
-            device = new Device(0, DeviceType.Hardware, this, 
-CreateFlags.HardwareVertexProcessing, pp); 
- 
-        } 
-        public void Render() 
-        { 
-            device.Transform.Projection = Matrix.PerspectiveFovLH(3.14f / 4, device.Viewport.Width / device.Viewport.Height, 1f, 1000f); 
-            device.Transform.View = Matrix.LookAtLH(new Vector3(0, 0, 20), new Vector3(), new Vector3(0, 1, 0));             device.RenderState.Lighting = false; 
-            vertex[0] = new CustomVertex.PositionTextured(new Vector3(0, 1, 1), 0, 
-0); 
-            vertex[1] = new CustomVertex.PositionTextured(new Vector3(-1, -1, 1), -
-1, 0); 
-            vertex[2] = new CustomVertex.PositionTextured(new Vector3(1, -1, 1), 
-0, -1); 
-            texture = new Texture(device, new 
-Bitmap(@"C:\Users\AMRIT\Desktop\Gameprog\practical3\practical3\images\t exture.jpg"), 0, Pool.Managed); 
-            device.Clear(ClearFlags.Target, Color.CornflowerBlue, 1, 0);             device.BeginScene();             device.SetTexture(0, texture); 
-            device.VertexFormat = CustomVertex.PositionTextured.Format;             device.DrawUserPrimitives(PrimitiveType.TriangleList, vertex.Length / 3, vertex);             device.EndScene(); 
-            device.Present(); 
-        } 
- 
-        private void Form1_Paint(object sender, PaintEventArgs e) 
-        { 
-             
-            Render(); 
-        } 
-    } 
-} 
+
+4)if-elif-else
+Code:
+#if-elif-else
+num = 10
+if num<0:
+    print("{} is a negative number".format(num))
+else:
+    print("{} is a positive number".format(num))
+
+#if-elif-else
+num = 42
+num_type_tuba = 'even' if num%2 == 0 else 'odd'
+print("{} is a {} number".format(num,num_type_tuba))
+
+4)Code:
+number_tuba = 9
+for i in range(1,5):
+    mul_table = number_tuba*i
+    print("{}*{} = {}".format(number_tuba,i,mul_table))
+
+
+5)While
+Code:
+#While
+#continuously ask user input till it is a positive
+usr_string_tuba = 'not a number'
+while not usr_string_tuba.isnumeric():
+    usr_string_tuba = input("Enter a positive integers:")
+
+6)Continue
+Code:
+prev_num_tuba = 0
+curr_num_tuba = 0
+print("The first ten numbers in fibonacci sequence:",end = "")
+for num in range(10):
+    print(curr_num_tuba,end = ' ')
+    if num == 0:
+        curr_num_tuba = 1
+        continue
+    temp = curr_num_tuba
+    curr_num_tuba = curr_num_tuba+ prev_num_tuba
+    prev_num_tuba = temp
+print("")    
+
+7.Break Statement
+Code:
+#break -skip rest of statement in the loop (if any) and exit loop
+random_int = 0
+import random
+while True:
+    #as with range() function,500 is not inclusive
+    random_int_tuba = random.randrange(500)
+    if random_int%4 == 0 and random_int%6 == 0:
+        break
+print("Random number divisible by 4 and 6:{}".format(random_int_tuba))
+
+8.Code:
+while True:
+    usr_string_tuba = input("Enter a positive integer:")
+    if usr_string_tuba.isnumeric():
+        break
