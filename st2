@@ -1,0 +1,71 @@
+AIM: Implement Data Visualization
+
+Bar Chart.
+Syntax:barplot(f,xlab,ylab,main,names.arg,col,border)
+Where the parameters used are: f=data which is in numeric value xlab= label for x axis ylab=label for y axis main=title of the barplot names.arg=name appearing under each bar col=used to give colors to bars in the graph border= color for the border
+Q.1) Create a bar graph of following data
+Code :
+f=c(10,12,8,20,11,5,4)
+interval=c(“20-25”,”25-30”,”30-35”,”35-40”,”40-45”,”45-50”,”5055”) color<c(“yellow”,”blue”,”red”,”green”,”pink”,”black”,”white”) barplot(f,xlab=”classinterval”,ylab=”frequency”,main=”marks”,name
+s.arg=interval,col=color,border=”black”)
+Output:
+ 
+
+ Pie chart
+Syntax: pie(f,labels,main,col,clockwise)
+Where the parameters used are: f=data which is in numeric value labels= description to the slices main=title of the piechart col=indicates the color palette clockwise=logical value indicating if slices are clockwise or anticlockwise
+Q.2) The U.S. Personal Expenditure by Categories of the year 1980 is given below
+Draw the pie chart representation of the given data.
+
+Code:
+f=c(28.3,12.9,3.31,2.23,53.2)
+labels=c(“Household Operation”,”Medical&Health”,”Personal Care”,”Private Education”,”Food&Tobacco”)
+pie(f,labels,main=”U.S. Personal Expenditure”,col =
+“rainbow(length(f)),clockwise = TRUE)
+Output:
+
+pie(a,labels,main="U.S. Personal Expenditure",col
+=rainbow(length(f)),clockwise = FALSE)
+ 
+Histogram :
+Syntax : hist(data,main,col,xlab,ylab) Where the parameters used are: data :which is in numeric value xlab= label for x axis ylab=label for y axis main=title of the histogram col=used to give colors to bars in the graph
+Q.3) The weights (in grams) of 40 oranges picked at random are as follows:
+45,55,30,110,75,100,40,60,65,40,100,75,70,60,70,95,85,80,35,45,40, 50,60,65,55,45,90,75,85,85,75,110,100,80,70,55,30,70 Represent the data by means of histogram.
+Code:
+x=c(45,55,30,110,75,100,40,60,65,40,100,75,70,60,70,95,85,80,35,45 ,40,50,60,65,55,45,90,75,85,85,75,110,100,80,70,55,30,70) hist(x,main=”Data Representation”,xlab=”Weights of oranges”,ylab=”Frequency”,col=rainbow(length(x))
+
+OUTPUT:
+ 
+Line Graphs
+Syntax: plot(v,type,col,xlab,ylab) v is a vector containing the numeric values.
+type takes the value “p” to draw only the points,”l”to draw only the lines and “o”to draw both points and lines. xlab is the label for x axis. ylab is the label for y axis. main is the Title of the chart. col is used to give colors to both the points and lines.
+Q.4) Show how to plot line graph in r using an example.
+Code:
+v <-c(7,12,28,3,41) png(file = “line_chart.jpg”) plot(v,type = “o”) dev.off() plot(v,type="o",col="red",xlab="Month",ylab ="Rainfall,main="Rain fall chart")
+Output:
+ 
+
+Stem-and-Leaf Plot
+Syntax: stem(v)
+Specify the data on which you want to draw the Stem and Leaf Plot. Here, you have to use the numeric vector, or a list containing the numeric vector. Q.5) Find the stem-and-leaf plot of the eruption durations in faithful.
+Code:
+View(faithful) duration = faithful$eruptions stem(duration)
+The decimal point is 1 digit(s) to the left of the |
+16 | 070355555588
+18 | 000022233333335577777777888822335777888
+20 | 00002223378800035778
+22 | 0002335578023578
+24 | 00228
+26 | 23
+28 | 080
+30 | 7
+32 | 2337
+34 | 250077
+36 | 0000823577
+38 | 2333335582225577
+40 | 0000003357788888002233555577778
+42 | 03335555778800233333555577778
+44 | 02222335557780000000023333357778888
+46 | 0000233357700000023578
+48 | 00000022335800333
+50 | 0370
