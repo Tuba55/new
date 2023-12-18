@@ -1,0 +1,8 @@
+Aim: Implement Eigenvalue and Eigenvector
+Theory: Eigenvalues the special set of scalar values that is associated with the set of linear equations most probably in the matrix equations.
+Eigenvectors are the vectors (non-zero) that do not change the direction when any linear transformation is applied. It changes by only a scalar factor. 
+
+Code:
+import numpy as np
+r = int(input("Enter no. of rows:")) c = int(input("Enter no. of cols:")) print("Enter",r*c,"elements of matrix:")
+A = [[int(input()) for j in range (c)] for i in range(r)] a = np.matrix(A) print("Printing the original square array:\n",a) w,v = np.linalg.eig(a) print("Printing the Eigenvalues of the given square array:\n",w) print("Printing Right eigenvectors of the given square array:\n",v)
