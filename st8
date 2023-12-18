@@ -1,0 +1,6 @@
+from scipy.stats import binom def calculate_binomial_probability(n,p,k):
+probability = binom.pmf(k,n,p) return probability
+def main():
+n = int(input("Enter the number of trails(n):")) p = float(input("Enter the probability of success in each trail(P):")) k = int(input("Enter the number of successes you're interested in(K):"))
+probability = calculate_binomial_probability(n,p,k) print(f"Binomial Probability :{probability}")
+if __name__ == "__main__": main() 
