@@ -1,0 +1,181 @@
+AIM: Basic of statistics: Frequency table, skewness
+c():
+Combine Values into a Vector Or List. This is a generic function which combines its arguments.
+1)	The data values are 2,3,6,7,8,10,20 . Represent them using c() 
+
+Code:
+a <- c(2,3,6,7,8,10,20)
+print (a)
+[1] 2 3 6 7 8 10 20 
+
+scan():
+scan() function in R Language is used to scan and read data. It is usually used to read data into vector or list or from file in R Language.
+2) Accept marks of 10 students from user Code:
+K <- scan()
+1: 23
+2: 12
+3: 76
+4: 45
+5: 79
+6: 5
+7: 3
+8: 57
+9 : 29
+10: 18
+11:
+Read 10 items
+print(k)
+[1] 23 12 76 45 79 5 3 57 29 18
+
+Data Frame
+3) Create data frame of following data
+Roll No	Name
+1	Kabir
+2	Teena
+3	Naina
+4	Sejal
+5	Saheb
+	
+Code:
+r <- c(1:5) n <- c(“Kabir”,”Teena”,”Naina”,”Sejal”,”Saheb”)
+d <- data.frame(RollNo=r, Name=n)
+print(d)
+RollNo	Name
+1	1	Kabir
+2	2	Teena
+3	3	Naina
+4	4	Sejal
+5	5	Saheb
+
+4) From the above data retrieve only students name. Code:
+print(d$Name)
+[1] Kabir Teena Naina Sejal Saheb 
+table() function:
+The table function is a very basic, but essential, function to master while performing interactive data analysis. It simply creates tabular results of categorical variables.
+
+1)Univariable data
+Syntax: table(data)
+
+Q) A survey ask people if they smoke or not. The recorded data are
+“yes”,”no”,”yes”,”yes”,”no”,”yes”,”yes”,”no”. Create frequency using table function.
+Code:
+x=c(‘yes’,’no’,’yes’,’yes’,’no’,’yes’,’yes’,’no’)
+table(x)
+x no yes
+3	5
+
+Q) A survey regarding population was conducted in some town of Miami. The recorded data according to gender was
+Create frequency distribution using table function
+‘M’,’F’,’M’,’M’,’M’,’O’,’M’,’F’,’F’,’M’,’O’,’F’,’M’,’F’,’F’,’M’,’M’ ,’O’,’F’,’F’,’F’,’M’,’F’,’M’,’O’,’M’,’M’,’F’,’M’,’F’,’M’,’F’,’O’,’F’,’ M’,’O’,’O’,’M’,’M’,’F’,’O’.
+
+Code:
+survey=c(‘M’,’F’,’M’,’M’,’M’,’O’,’M’,’F’,’F’,’M’,’O’,’F’,’M’,’F’,’F
+’,’M’,’M’,’O’,’F’,’F’,’F’,’M’,’F’,’M’,’O’,’M’,’M’,’F’,’M’,’F’,’M’,’F
+’,’O’,’F’,’M’,’O’,’O’,’M’,’M’,’F’,’O’) table(survey)
+F	M	O
+15	18	8
+
+
+2) Bivariable function:
+Syntax: table(data1,data2)
+
+Q) A survey was done in a college to see how many students smoke. It was found that students was smoke, study for less hours than the non smoker students. The data recorded is given below:
+Smoke : ‘yes’,’no’,’no’,’yes’,’no’,’yes’,’yes’,’yes’,’no’,’yes’
+Hours Of Study: 5,10,8,5,10,4,4,3,12,3 Create its frequency table using table function Code:
+smoke = c(‘yes’,’no’,’no’,’yes’,’no’,’yes’,’yes’,’yes’,’no’,’yes’) hours=c(5,10,8,5,10,4,4,3,12,3) table(smoke,hours)
+hours
+smoke	3 4 5 8 10 12
+no	0 0 0 1 2 1 yes
+2 2 2 0 0 0
+
+Q) A survey of employees with their respective salary is given below: Employee:’Manager’,’Accountant’,’Accountant’,’Accountant’,’Mana ger’, ‘Assistant manager’, ‘Assistant manager’,’Assistant manager’ Salary: 50000,25000,20000,23000,45000,15000,21000,20000 Create its frequency table using table function.
+
+Code:
+Employee=c(’Manager’,’Accountant’,’Accountant’,’Accountant’,’Ma nager’, ‘Assistant manager’, ‘Assistant manager’,’Assistant manager’
+)
+Salary=c(50000,25000,20000,23000,45000,15000,21000,20000) table(Employee,Salary)
+Salary
+Employee	15000 20000 21000 23000 25000 45000 50000
+Accountant	0	1	0	1	1	0	0
+Assistant manager	1	1	1	0	0	0 0
+Manager	0	0	0	0	0	1 1
+Skewness:
+Skewness is a statistical numerical method to measure the asymmetry of the distribution or data set. It tells about the position of the majority of data values in the distribution around the mean value.
+Syntax: skewness (data)
+
+Q) With an example, show the different types of skewness.
+Code:
+1) Positive skewness
+library (moments) x <- c(40, 41, 42, 43, 50)
+print(skewness(x))
+[1] 1.2099
+2) Negative Skewness
+X<-c(10, 11, 21, 22, 23, 25)
+print(skewness(x))
+[1] -0.5794294
+Karl Pearson’s coefficient of Skewness
+
+Q) Blood sugar level (in mg/dl) of a sample of 20 patients admitted to the hospitals are as follows:
+75, 80, 72, 78, 82, 85, 73, 75, 97, 87,84, 76, 73, 79, 99, 86, 83, 76, 78, 73.
+Compute Pearson coefficient of skewness and interpret the result.
+Code:
+blood_sugar <- c(75, 80, 72, 78, 82, 85, 73, 75, 97, 87,84, 76, 73, 79, 99, 86, 83, 76, 78, 73)
+Mean <- mean(blood_sugar)
+Median<-median(blood_sugar)
+SD<- sd(blood_sugar)
+Mean
+[1] 80.55
+Median
+[1] 78.5
+SD
+[1] 7.556628
+S_k <- 3 * (Mean - Median) / SD
+S_k
+[1] 0.813855
+The Pearson coefficient of skewness S_k>0, the distribution of Blood Sugar Level is positively skewed.
+
+Bowley’s Coefficient of Skewness
+Q) The following data are the heights, correct to the nearest centimeters, for a group of children:
+126, 129, 129, 132, 132, 133, 133, 135, 136, 137,137, 138, 141, 143, 144, 146, 147, 152, 154, 161
+Find Bowley’s coefficient of skewness and interpret the result.
+
+Code:
+x<- c(126, 129, 129, 132, 132, 133, 133, 135, 136, 137,137, 138, 141, 143, 144, 146, 147, 152,154, 161) boxplot(x,horizontal =
+TRUE,col=”lightblue”)
+Q <- quantile(x,probs=c(0.25,0.50,0.75),type=6,names = FALSE)
+Q
+[1] 132.25 137.00 145.50
+S_b<-(Q[3]+Q[1]-2*Q[2])/(Q[3]-Q[1])
+S_b
+[1] 0.2830189
+The Bowley’s coefficient of skewness S_b >0, the distribution of height (in cm) is positively skewed.
+
+
+Q) Diastolic blood pressure (in mmHg) of a sample of 18 patients admitted to the hospitals are as follows:
+65,76,64,73,74,80,71,68,66,81,79,75,70,62,83,63,77,78.
+Find Pearson’s and Bowley’s coefficient of skewness and interpret the result.
+
+Code:
+Pearson’s Method:
+DBP <- c(65,76,64,73,74,80,71,68,66,81,79,75,70,62,83,63,77,78) mean
+(DBP)
+[1] 72.5 median
+(DBP) [1] 73.5 sd (DBP) [1]
+6.653173
+S_k <-3 * (M - MD) / SD
+S_k
+[1] -0.4509127
+The Pearson’s coefficient of skewness S_k<0, the distribution Diastolic Blood.
+Pressure is negatively skewed.
+Bowley’s Method:
+DBP <-c(65,76,64,73,74,80,71,68,66,81,79,75,70,62,83,63,77,78) boxplot(DBP,horizontal = TRUE,col=”lightpink”) 
+ 
+Q_BP <- quantile(DBP,probs=c(0.25,0.50,0.75),type=6,names =
+FALSE)
+Q_BP
+[1] 65.75 73.50 78.25
+S_b<- (Q_BP[3]+Q_BP[1]-2*Q_BP[2])/(Q_BP[3]-Q_BP[1])
+S_b
+[1] -0.24
+The Bowley’s coefficient of skewness S_b < 0, the distribution of Diastolic Blood.
+Pressure is negatively skewed.
