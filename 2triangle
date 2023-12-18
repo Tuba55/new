@@ -1,48 +1,159 @@
-using System; using System.Collections.Generic; using System.ComponentModel; using System.Data; using System.Drawing; using System.Text; using System.Windows.Forms; using Microsoft.DirectX; 
-using Microsoft.DirectX.Direct3D; 
+Aim:Program based on Packages
+1.A program to demonstrate usage of Packages
+Create a folder named mypckg.
+Inside this folder create an empty Python file i.e. __init__.py
+Then create two modules mod1 and mod2 in this folder.
+
+Mod1.py
+Code:
+def gfg():
+    print("Welcome to GFG")
+
+Mode2.py
+Code:
+def sum(a,b):
+    return a+b
+
+file.py
+Code:
+from mypckg import mod1
+from mypckg import mod2
+mod1.gfg()
+res = mod2.sum(1, 2)
+print(res)
+
+Output:
+
+2.Program to demonstrate  the usage of cars_packages
+Car_module.py
+
+
+Code:
+class Car:
+    def __init__(self,make,model,year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+Display_module.py:
+Code:
+from cars_package.car_module import Car
+def display_car_info(car):
+    print(f"Make:{car.make},Model:{car.model},Year:{car.year}")
+
+Main.py:
+Code:
+from cars_package.car_module import Car
+from cars_package.display_module import display_car_info
+my_car = Car("Toyota","Camry",2022)
+display_car_info(my_car)
+
+Output:
+3.Program to demonstrate the usage of math_operations_package
+
+Addition_module.py
+Code:
+def add(a,b):
+    return a+b
+
+Substraction_module.py
+Code:
+def subtract(a,b):
+    return a-b
+
+Main_math.py
+Code:
+from math_operations_package.addition_module import add
+from math_operations_package.substraction_module import subtract
+result_addition = add(5,3)
+result_subtraction = subtract(8,2)
+print(f"Addition Result:{result_addition}")
+print(f"Subtraction Result:{result_subtraction}")
+
+Output:
+4.Program to demonstrate the usage of shapes_package
+Rectangle_module.py
+Code:
+def calculate_rectangle_area(length,width):
+    return length*width
+
+Circle_area.py
+Code:
+import math
+def calculate_circle_area(radius):
+    return math.pi*radius**2
+
+Main_shape.py
+from shapes_package.rectangle_module import calculate_rectangle_area
+from shapes_package.circle_module import calculate_circle_area
+rectangle_area = calculate_rectangle_area(5,8)
+circle_area = calculate_circle_area(3)
+print(f"Rectangle Area:{rectangle_area}")
+print(f"Circle Area:{circle_area}")
+
+Output:
+5.Program to demonstrate the usage of  animals_package
+Mammals_module.py
+Code:
+class Mammal:
+    def __init__(self,species,sound):
+        self.species = species
+        self.sound = sound
+    def make_sound(self):
+        print(f"The{self.species} make a {self.sound}sound.")
+
+Bird_module.py
+Code:
+class Bird:
+    def __init__(self,species,can_fly):
+        self.species = species
+        self.can_fly = can_fly
+    def fly(self):
+        if self.can_fly:
+            print(f"The {self.species} is flying.")
+        else:
+            print(f"The {self.species} cannot fly.")
+
+Main_animals.py
+from animals_package.Mammals_module import Mammal
+from animals_package.Bird_module import Bird
+lion = Mammal("Lion","roar")
+sparrow = Bird("Sparrow",can_fly = True)
+lion.make_sound()
+sparrow.fly()
+
+Output:
  
-namespace trianglepract2 
-{ 
-    public partial class Form1 : Form 
-    { 
-        Microsoft.DirectX.Direct3D.Device device; 
-        public Form1() 
-        { 
-            InitializeComponent(); 
-            InitDevice(); 
-        } 
- 
-        private void InitDevice() 
-        { 
-            PresentParameters pp = new PresentParameters();             pp.Windowed = true; 
-            pp.SwapEffect = SwapEffect.Discard; 
-            device = new Device(0, DeviceType.Hardware, this, 
-CreateFlags.HardwareVertexProcessing, pp); 
-        } 
-        public void Render() 
-        { 
-            CustomVertex.TransformedColored[] vertexes = new 
-CustomVertex.TransformedColored[3]; 
- 
-            vertexes[0].Position = new Vector4(100, 100, 0, 1.0f);//first point             vertexes[0].Color = System.Drawing.Color.FromArgb(0, 255, 0).ToArgb(); 
- 
-            vertexes[1].Position = new Vector4(153, 300, 0, 1.0f);//second point             vertexes[1].Color = System.Drawing.Color.FromArgb(0, 0, 255).ToArgb(); 
- 
-            vertexes[2].Position = new Vector4(80, 300, 0, 1.0f);//third point             vertexes[2].Color = System.Drawing.Color.FromArgb(255, 0, 0).ToArgb(); 
- 
- 
-            device.Clear(ClearFlags.Target, Color.Blue, 0, 1);             device.BeginScene(); 
-            device.VertexFormat = CustomVertex.TransformedColored.Format;             device.DrawUserPrimitives(PrimitiveType.TriangleList, 1, vertexes);             device.EndScene(); 
-            device.Present(); 
-        } 
-        private void Form1_Load(object sender, EventArgs e) 
-        { 
- 
-        } 
- 
-        private void Form1_Paint(object sender, PaintEventArgs e) 
-        { 
-          Render(); 
-                 } 
-            } 
-        } 
+6..Program to demonstrate the usage of sports_package
+Football_module.py
+
+Code:
+class Football:
+    def __init__(self,team,goals_scored):
+        self.team = team
+        self.goals_scored = goals_scored
+
+    def celebrate_goal(self):
+        print(f"The {self.team} football team celebrates a goal!")
+                
+
+Basketball_module.py
+Code:
+class Basketball:
+    def __init__(self,team,points_scored):
+        self.team = team
+        self.points_scored = points_scored
+
+    def cheer(self):
+        print(f"The {self.team} basketball team cheers for scoring points!")
+        
+Main_sports.py
+Code:
+from sports_package.Football_module import Football
+from sports_package.Basketball_module import Basketball
+soccer_team = Football("Soccer Squad",goals_scored = 2)
+basketball_team = Basketball("Basketball Crew",points_scored = 75)
+soccer_team.celebrate_goal()
+basketball_team.cheer()
+
+Output:
