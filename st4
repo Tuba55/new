@@ -1,0 +1,114 @@
+Aim: Perform sorting / searching Algorithms
+1.	SORTING ALGORITHM
+Sorting in Java involves arranging elements in a specific order, often in ascending or descending order. There are various sorting algorithms, and Java provides a convenient way to perform sorting through the Arrays class and the Collections framework. a)Bubble Sort:
+Bubble sort is a sorting algorithm that compares two adjacent elements and swaps them until they are in the intended order.
+Code:
+import java.util.Arrays; class Main{
+static void bubbleSort(int array[]){
+int size = array.length; for(int i = 0; i < size-1; i++) for(int j = 0; j < size-1-i; j++) if(array[j]>array[j+1]){ int temp = array[j]; array[j] = array[j+1]; array[j+1]=temp;}}
+public static void main(String args[]){ int[] data = {-2,45,0,11,-9};
+Main.bubbleSort(data);
+System.out.println("Sorted array in ascending order: ");
+System.out.println(Arrays.toString(data)); }}
+Output:
+
+  
+B)SELECTION Sort:
+Selection sort is a sorting algorithm	selects the smallest element from an unsorted list in each iteration and places that element at the beginning of the unsorted list.
+Code:
+import java.util.Arrays; class SelectionSort{
+void selectionSort(int array[]){
+int size = array.length; for(int step = 0; step < size-1; step++){
+int min_idx = step;
+for(int i = step+1; i < size; i++){
+if(array[i] < array[min_idx]){
+min_idx = i;
+}}
+int temp = array[step]; array[step] = array[min_idx]; array[min_idx] = temp;}}
+public static void main(String args[]){
+int[] data = {20,12,10,15,2};
+SelectionSort ss = new SelectionSort(); ss.selectionSort(data);
+System.out.println("Sorted Array in Ascending Order: ");
+System.out.println(Arrays.toString(data));
+}}
+Output:
+
+ 
+c)Insertion Sort:
+Insertion sort is a sorting algorithm	places an unsorted element at its suitable place in each iteration. We assume that the first card is already sorted, then we select an unsorted card. If the unsorted card is greater than the card in hand, it is placed on the right, otherwise, to the left. In the same way, other unsorted cards are taken and put in their right place.
+Code:
+import java.util.Arrays; class InsertionSort{ void insertionSort(int array[]){
+int size = array.length; for(int step = 1; step < size ; step++){
+int key = array[step]; int j = step - 1;
+//for descending order, change key<array[j] to key>array[j] while(j >= 0 && key < array[j]){
+array[j + 1] = array[j];
+--j;}
+array[j + 1] = key;}}
+public static void main(String args[]){ int[] data = {9,5,1,4,3};
+InsertionSort is = new InsertionSort(); is.insertionSort(data);
+System.out.println("Sorted array in ascending order: ");
+System.out.println(Arrays.toString(data));
+}}
+Output:
+
+ 
+d)Merge Sort:
+Merge sort is the sorting technique	follows the divide and conquer approach. It is one of the most popular and efficient sorting algorithms. It divides the given list into two equal halves, calls itself for the two halves and then merges the two sorted halves.
+We have to define the merge() function to perform the merging.
+Code:
+import java.util.Arrays; public class MergeSort { public static void mergeSort(int[] array) {
+if(array.length <= 1) {
+return;//Already sorted
+}
+int mid = array.length/2; int[] left = Arrays.copyOfRange(array, 0, mid); int[] right = Arrays.copyOfRange(array, mid, array.length); mergeSort(left); mergeSort(right); merge(array,left,right);
+} private static void merge(int[]array, int[] left, int[]right) { int i = 0, j = 0, k = 0;
+while(i<left.length && j<right.length) { if(left[i]<=right[j]) { array[k++] = left[i++];
+} else { array[k++] = right[j++];
+}
+} while(i<left.length) { array[k++] = left[i++];
+}
+while(j<right.length) {
+array[k++] = right[j++];
+}}
+public static void main(String[] args) {
+int[] data = {38,27,43,3,9,82,10};
+System.out.println("Original Array:"+ Arrays.toString(data)); mergeSort(data);
+
+System.out.println("Sorted Array:" + Arrays.toString(data));
+}
+}
+Output:
+ 
+
+ 
+2.Searching Sort:
+Searching is the process of finding some particular element in the list. If the element is present in the list, then the process is called successful, and the process returns the location of that element; otherwise, the search is called unsuccessful. Two popular search methods are Linear Search and Binary Search.
+a)Linear Search:
+Linear search is also called a sequential search algorithm. It is the simplest searching algorithm. In Linear search, we simply traverse the list completely and match each element of the list with the item whose location is to be found. If the match is found, then the location of the item is returned; otherwise, the algorithm returns NULL.
+Code:
+class LinearSearch{
+public static int linearSearch(int array[],int x){
+int n = array.length; for(int i=0; i<n; i++){ if(array[i] == x) return i;
+
+}
+return -1;}
+public static void main(String args[]){ int array[] = {2,4,0,1,9}; int x = 1; int result = linearSearch(array,x); if(result == -1)
+System.out.print("Element not found"); else
+System.out.print("Element found at index:" +result);
+}}
+Output:
+ 
+Binary Search:
+Binary search is the search technique that works efficiently on sorted lists. Hence, to search an element into some list using the binary search technique, we must ensure that the list is sorted.
+Code:
+class BinarySearch {
+int binarySearch(int arr[], int l, int r, int x){ if(r>=l) {
+int mid = l+(r-l)/2; if(arr[mid] == x) return mid; if(arr[mid]>x) return binarySearch(arr,l, mid-1, x); return binarySearch(arr, mid + 1, r, x);
+} return-1;
+}
+public static void main(String args[]) { BinarySearch ob = new BinarySearch(); int arr[] = {2,3,4,10,40}; int n = array.length; int x = 10; int result = ob.binarySearch(arr, 0, n-1,x); if(result == -1)
+System.out.println("Element not present"); else
+System.out.println("Element found at index " +result);
+}
+}
+Output:
