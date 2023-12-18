@@ -1,0 +1,195 @@
+Aim: Implement oops in java
+Theory:The object-oriented programming model revolves around the concept of Objects. An object is an instance of a Class. It contains properties and functions.
+1) Inheritance When one object acquires all the properties and behaviors of a parent object, it is known as inheritance. It provides code reusability. It is used to achieve runtime polymorphism.
+Single Inheritance In single inheritance, a subclass is derived from only one super class. It inherits the properties and behavior of a single-parent class. Sometimes it is also known as simple inheritance.
+
+Code:
+class Employee
+{
+float salary = 34534*12;
+}
+public class Executive extends Employee{
+float bonus = 3000*6;
+public static void main(String args[])
+{
+Executive obj = new Executive();
+System.out.println("Total salary credited:"+obj.salary);
+System.out.println("Bonus of six months:"+obj.bonus);
+}
+}
+
+Output:
+
+
+Multilevel Inheritance In multi-level inheritance, a class is derived from a class which is also derived from another class is called multi-level inheritance. In simple words, we can say that a class that has more than one parent class is called multi-level inheritance.
+Code:
+class Student{
+int reg_no; void getNo(int no)
+{
+reg_no = no;
+}
+void putNo(){
+System.out.println("registration number =" +reg_no);
+}
+}
+class Marks extends Student{
+float marks; void getMarks(float m){
+marks = m;
+}
+void putMarks()
+{
+System.out.println("marks="+marks);
+}
+}
+class Sports extends Marks{ float score; void getScore(float src){
+score = src;
+}
+void putScore(){
+System.out.println("score = "+score);
+}
+}
+public class MultilevelInheritanceExample{
+public static void main(String args[]){ Sports ob = new Sports(); ob.getNo(987); ob.putNo();
+ob.getMarks(78); ob.putMarks(); ob.getScore(68.7f); ob.putScore();
+}
+}
+Output:
+
+
+
+ Hierarchical Inheritance If a number of classes are derived from a single base class, it is called hierarchical inheritance.
+Code:
+class Student{
+public void methodStudent(){
+System.out.println("The method of the class Student invoked");}}
+class Science extends Student{
+public void methodScience()
+{System.out.println("The method of the class Science invoked.");
+}}
+class Commerce extends Student{
+public void methodCommerce()
+{System.out.println("The method of the class Commerce invoked.");
+}}
+class Arts extends Student{ public void methodArts()
+{System.out.println("The method of the class Arts invoked.");
+}}
+public class HierarchicalInheritanceExample{
+public static void main(String args[])
+{Science sci = new Science();
+Commerce comm = new Commerce(); Arts art = new Arts(); sci.methodStudent(); comm.methodStudent(); art.methodStudent();
+sci.methodScience(); comm.methodCommerce(); art.methodArts();
+}}
+Output:
+
+
+ 
+Polymorphism:Polymorphism is an important concept of object-oriented programming. It simply means more than one form. That is, the same entity (method or operator or object) can perform different operations in different scenarios.
+1.Overloading:If a class has multiple methods having same name but different in parameters, it is known as Method Overloading
+Code: public class MethodOverloadingExample{
+public void print(){
+System.out.println("No arguments provided.");
+}
+public void print(int number){
+System.out.println("Integer argument:" +number);
+}
+public void print(int num1, int num2) {
+System.out.println("Two integer arguments:" +num1 +"and" +num2);
+}
+public void print(double number) {
+System.out.println("Double argument:" +number);
+}
+public static void main(String[]args) {
+MethodOverloadingExample example = new MethodOverloadingExample(); example.print(); example.print(42); example.print(5,10); example.print(3.14);
+}
+}
+
+Output:
+
+
+2.Overriding: method overriding occurs when a subclass (child class) has the same method as the parent class.
+Code:
+class Animal {
+void makeSound(){
+System.out.println("Animal makes a generic sound.");
+}
+}
+class Dog extends Animal {
+void makeSound() {
+System.out.println("Dog barks!");
+}
+}
+class Cat extends Animal {
+void makeSound() {
+System.out.println("Cat meows!");
+}
+}
+public class MethodOverridingExample {
+public static void main(String[] args){
+Animal animal = new Animal();
+Animal dog = new Dog(); Animal cat = new Cat(); animal.makeSound(); dog.makeSound(); cat.makeSound();
+}
+}
+Output:
+
+
+Encapsulation in Java is a process of wrapping code and data together into a single unit, for example, a capsule which is mixed with several medicines.
+Code: class Area
+{
+int length; int breadth;
+Area(int length, int breadth)
+{
+this.length = length; this.breadth = breadth;
+}
+public void getArea()
+{
+int area = length*breadth;
+System.out.println("Area:" +area);}}
+public class Main3{
+public static void main(String[] args)
+{
+Area rectangle = new Area(5,6); rectangle.getArea();}}
+Output:
+
+
+2.Data Hiding
+Data hiding using encapsulation is a fundamental concept in object-oriented programming that involves restricting direct access to an object's internal data (such as fields or attributes) and providing controlled access through methods. In encapsulation, the internal state of an object is typically declared as private or protected, making it inaccessible from outside the class. Access to this internal data is granted through public methods, known as getter and setter methods, which are responsible for retrieving and modifying the data.
+Code:
+class Person{
+private int age; public int getAge()
+{
+return age;
+}
+public void setAge(int age){
+this.age = age;
+}
+}
+public class Main4{
+public static void main(String args[])
+{
+Person p1 = new Person(); p1.setAge(24);
+System.out.print("My age is "+p1.getAge());
+}}
+Output:
+
+ 
+Abstraction is a process of hiding the implementation details and showing only functionality to the user.A class which is declared with the abstract keyword is known as an abstract class in Java. It can have abstract and non-abstract methods (method with the body).
+Code:
+abstract class MotorBike{
+abstract void brake();
+}
+class SportsBike extends MotorBike
+{
+public void brake(){
+System.out.println("SportBike Brake");
+}}
+class MountainBike extends MotorBike
+{
+public void brake(){
+System.out.println("Mountain Bike Brake");
+}}
+public class Main2{
+public static void main(String[] args){
+MountainBike m1 = new MountainBike(); m1.brake();
+SportsBike s1 = new SportsBike(); s1.brake();}}
+Output:
+ 
