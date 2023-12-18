@@ -1,1 +1,116 @@
+                               PRACTICAL NO.8
 
+Aim:Program based on Overloading.
+
+1.Function Overloading with Default Values.
+Code:
+def add(a,b = 0,c = 0):
+    return a+b+c
+result1 = add(1)
+result2 = add(1,2)
+result3 = add(1,2,3)
+print(result1)
+print(result2)
+print(result3)
+
+Output:
+
+2.Let us write a code to calculate the area of figure We are setting the default value of the parameters as None, and will call the same function having varying parameters.
+
+Code:
+import math
+def calculate_area(shape,length = None,width = None,radius = None,side = None):
+    if shape =="square" and  side is not None:
+        return side*side
+    elif shape == "rectangle" and length is not None and width is not None:
+        return length*width
+    elif shape == "circle" and radius is not None:
+        return math.pi*(radius**2)
+    else:
+        raise ValueError("Invalid shape or missing parameters")
+
+area_square =calculate_area("square",side = 5)
+area_rectangle =calculate_area("rectangle",length=4,width=6)
+area_circle =calculate_area("circle",radius=3)
+print("Area of square:",area_square)
+print("Area of rectangle:",area_rectangle)
+print("Area of circle:",area_circle)
+
+Output:
+
+3.Using the concept of function overloading in python using default values to calculate areas for different geometric shapes
+Code:
+import math
+def calculate_area(shape,length = None,width = None,radius = None,side = None,base = None,height = None): 
+    if shape =="square" and  side is not None:
+        return side*side
+    elif shape == "rectangle" and length is not None and width is not None:
+        return length*width
+    elif shape == "circle" and radius is not None:
+        return math.pi*(radius**2)
+    elif shape == "triangle" and base is not None and height is not None:
+        return 0.5*base*height
+    elif shape == "parallelogram" and base is not None and height is not None:
+        return base*height
+    else:
+        raise ValueError("Invalid shape or missing parameters")
+area_square =calculate_area("square",side = 5)
+area_rectangle =calculate_area("rectangle",length=4,width=6)
+area_circle =calculate_area("circle",radius=3)
+area_triangle =calculate_area("triangle",base=4,height=3)
+area_parallelogram =calculate_area("parallelogram",base=5,height=8)
+print("Area of square:",area_square)
+print("Area of rectangle:",area_rectangle)
+print("Area of circle:",area_circle)
+print("Area of triangle:",area_triangle)
+print("Area of parallelogram:",area_parallelogram)
+
+Output:
+ 
+
+4.An example of a simple Employee class with function overloading for different scenarios.
+Code:
+class Employee:
+    def __init__(self, name, salary, department="None"):
+        self.name = name
+        self.salary = salary
+        self.department = department
+    def display_info(self):
+        print(f"Name: {self.name}, Salary: {self.salary}, Department: {self.department}")
+    def calc_bonus(self, percentage=0.1):
+        bonus = self.salary * percentage
+        return bonus
+
+emp1 = Employee("Alice", 50000, "HR")
+emp2 = Employee("Bob", 60000)
+#display Information
+emp1.display_info()
+emp2.display_info()
+#Calculate bonus with default percentage
+bonus1 = emp1.calc_bonus()
+bonus2 = emp2.calc_bonus()
+
+print(f"Bonus for {emp1.name}: {bonus1}")
+print(f"Bonus for {emp2.name}: {bonus2}")
+
+Output:
+
+5.==Operator overloading in Python.
+Code:
+class Point:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def __eq__(self,other):
+        if isinstance(other,Point):
+            return self.x == other.x and self.y == other.y
+        else:
+            return False
+#Example usage
+p1 = Point(1,2)
+p2 = Point(1,2)
+p3 = Point(3,4)
+print(p1 == p2)
+print(p1 == p3)
+
+Output:
