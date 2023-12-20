@@ -1,0 +1,168 @@
+db.createCollection(“student”)
+show dbs
+*Practicals 0.000GB
+admin 0.000GB
+config 0.000GB
+local 0.000GB*
+
+Use table_name
+> use Practicals
+switched to db Practicals
+> db.Stu.insert({"Name":"Archi",
+... "RollNo":"43"
+... "Class":"A",
+... "Gender":"F"}
+db.tablename.insert
+> db.Stu.insert({"Name":"Archi","Rollno":"45","Class":"A","Gender":"F"})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({"Name":"Zain","Rollno":"70","Class":"B","Gender":"M"})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({"Name":"Sakshi","Rollno":"4","Class":"B","Gender":"F"})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({"Name":"Khushi","Rollno":"48","Class":"B","Gender":"F"})
+WriteResult({ "nInserted" : 1 })
+> db.Stu.insert({"Name":"Tia","Rollno":"67","Class":"A","Gender":"M"})
+WriteResult({ "nInserted" : 1 })
+Rollno.11 Subject: DBMS & mining
+ Guru Nanak Khalsa college 
+db.tablename.find()
+> db.Stu.find()
+{ "_id" : ObjectId("64eadba7dd0e8fe474d3c39d"), "Name" : "Archi", "Rollno" : 
+"45", "Class" : "A", "Gender" : "F" }
+{ "_id" : ObjectId("64eadbcfdd0e8fe474d3c39e"), "Name" : "Zain", "Rollno" : "70", 
+"Class" : "B", "Gender" : "M" }
+{ "_id" : ObjectId("64eadbefdd0e8fe474d3c39f"), "Name" : "Sakshi", "Rollno" : 
+"4", "Class" : "B", "Gender" : "F" }
+{ "_id" : ObjectId("64eadc17dd0e8fe474d3c3a0"), "Name" : "Khushi", "Rollno" : 
+"48", "Class" : "B", "Gender" : "F" }
+{ "_id" : ObjectId("64eadc35dd0e8fe474d3c3a1"), "Name" : "Tia", "Rollno" : "67", 
+"Class" : "A", "Gender" : "M" }
+Rollno.11 Subject: DBMS & mining
+ Guru Nanak Khalsa college 
+db.tablename.update()
+{ "_id" : ObjectId("64eadba7dd0e8fe474d3c39d"), "Name" : "Archi", "Rollno" : 
+"45", "Class" : "A", "Gender" : "F" }
+{ "_id" : ObjectId("64eadbcfdd0e8fe474d3c39e"), "Name" : "Zain", "Rollno" : "70", 
+"Class" : "B", "Gender" : "M" }
+{ "_id" : ObjectId("64eadbefdd0e8fe474d3c39f"), "Name" : "Sakshi", "Rollno" : 
+"4", "Class" : "B", "Gender" : "F" }
+{ "_id" : ObjectId("64eadc17dd0e8fe474d3c3a0"), "Name" : "Khushi", "Rollno" : 
+"48", "Class" : "B", "Gender" : "F" }
+{ "_id" : ObjectId("64eadc35dd0e8fe474d3c3a1"), "Name" : "Tia", "Rollno" : "67", 
+"Class" : "A", "Gender" : "M" }
+> db.Stu.update({"Rollno":"48"},{$set:{"Rollno":"24"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Stu.find()
+{ "_id" : ObjectId("64eadba7dd0e8fe474d3c39d"), "Name" : "Archi", "Rollno" : 
+"45", "Class" : "A", "Gender" : "F" }
+{ "_id" : ObjectId("64eadbcfdd0e8fe474d3c39e"), "Name" : "Zain", "Rollno" : "70", 
+"Class" : "B", "Gender" : "M" }
+{ "_id" : ObjectId("64eadbefdd0e8fe474d3c39f"), "Name" : "Sakshi", "Rollno" : 
+"4", "Class" : "B", "Gender" : "F" }
+{ "_id" : ObjectId("64eadc17dd0e8fe474d3c3a0"), "Name" : "Khushi", "Rollno" : 
+"24", "Class" : "B", "Gender" : "F" }
+{ "_id" : ObjectId("64eadc35dd0e8fe474d3c3a1"), "Name" : "Tia", "Rollno" : "67", 
+"Class" : "A", "Gender" : "M" }
+Rollno.11 Subject: DBMS & mining
+ Guru Nanak Khalsa college 
+db.tablename.remove()
+> db.Stu.remove({"Gender":"F"})
+WriteResult({ "nRemoved" : 4 })
+> db.Stu.find()
+{ "_id" : ObjectId("64eadc35dd0e8fe474d3c3a1"), "Name" : "Tia", "Rollno" : "67", 
+"Class" : "A", "Gender" : "M" }
+>
+> drop Stu
+uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:5
+> delete Stu
+true
+> db.Stu.find()
+{ "_id" : ObjectId("64eadc35dd0e8fe474d3c3a1"), "Name" : "Tia", "Rollno" : "67", 
+"Class" : "A", "Gender" : "M" }
+> db.Stu.find()
+{ "_id" : ObjectId("64eadc35dd0e8fe474d3c3a1"), "Name" : "Tia", "Rollno" : "67", 
+"Class" : "A", "Gender" : "M" }
+>
+> db.Stu.find()
+Rollno.11 Subject: DBMS & mining
+ Guru Nanak Khalsa college 
+{ "_id" : ObjectId("64eadc35dd0e8fe474d3c3a1"), "Name" : "Tia", "Rollno" : "67", 
+"Class" : "A", "Gender" : "M" }
+{ "_id" : ObjectId("64eadee79dba5fb4c2daabda"), "name" : "ifrah" }
+> db.Stu.find()
+{ "_id" : ObjectId("64eadc35dd0e8fe474d3c3a1"), "Name" : "Tia", "Rollno" : "67", 
+"Class" : "A", "Gender" : "M" }
+{ "_id" : ObjectId("64eadee79dba5fb4c2daabda"), "name" : "ifrah" }
+{ "_id" : ObjectId("64eadf399dba5fb4c2daabdb"), "name" : "Palak", "Rollno" : 
+"33", "Class" : "C", "Gender" : "F" }
+> db.Stu.find()
+{ "_id" : ObjectId("64eadc35dd0e8fe474d3c3a1"), "Name" : "Tia", "Rollno" : "67", 
+"Class" : "A", "Gender" : "F" }
+{ "_id" : ObjectId("64eadee79dba5fb4c2daabda"), "name" : "ifrah" }
+{ "_id" : ObjectId("64eadf399dba5fb4c2daabdb"), "name" : "Palak", "Rollno" : 
+"33", "Class" : "C", "Gender" : "F" }
+>
+
+Aim: Query with command with MongoDB
+Show dbs
+> use data
+switched to db data
+> show dbs
+Practicals 0.000GB
+admin 0.000GB
+config 0.000GB
+local 0.000GB
+db.createCollection(“student”)
+> db.createcollection("student")
+
+> 
+db.student.insert({"Name":"Archi","Age":"21","Class":"A","Gender":"F","Country"
+:"India","Score":"78"})
+WriteResult({ "nInserted" : 1 })
+> db.student.find()
+{ "_id" : ObjectId("64eae217dd0e8fe474d3c3a2"), "Name" : "Archi", "Age" : "21", 
+"Class" : "A", "Gender" : "F", "Country" : "India", "Score" : "78" }
+> 
+db.student.insert({"Name":"Rahul","Age":"23","Class":"A","Gender":"M","Countr
+y":"Africa","Score":"44"})
+WriteResult({ "nInserted" : 1 })
+> 
+db.student.insert({"Name":"Tia","Age":"21","Class":"B","Gender":"F","Country":"
+Russia","Score":"67"})
+WriteResult({ "nInserted" : 1 })
+> 
+db.student.insert({"Name":"Rohan","Age":"24","Class":"B","Gender":"M","Countr
+y":"Russia","Score":"56"})
+WriteResult({ "nInserted" : 1 })
+> 
+db.student.insert({"Name":"Ariba","Age":"28","Class":"B","Gender":"F","Country"
+:"India","Score":"62"})
+WriteResult({ "nInserted" : 1 })
+A)Selector:
+> db.student.find()
+{ "_id" : ObjectId("64eae217dd0e8fe474d3c3a2"), "Name" : "Archi", "Age" : "21", 
+"Class" : "A", "Gender" : "F", "Country" : "India", "Score" : "78" }
+{ "_id" : ObjectId("64eae278dd0e8fe474d3c3a3"), "Name" : "Rahul", "Age" : "23", 
+"Class" : "A", "Gender" : "M", "Country" : "Africa", "Score" : "44" }
+{ "_id" : ObjectId("64eae2b1dd0e8fe474d3c3a4"), "Name" : "Tia", "Age" : "21", 
+"Class" : "B", "Gender" : "F", "Country" : "Russia", "Score" : "67" }
+{ "_id" : ObjectId("64eae2d8dd0e8fe474d3c3a5"), "Name" : "Rohan", "Age" : "24", 
+"Class" : "B", "Gender" : "M", "Country" : "Russia", "Score" : "56" }
+{ "_id" : ObjectId("64eae312dd0e8fe474d3c3a6"), "Name" : "Ariba", "Age" : "28", 
+"Class" : "B", "Gender" : "F", "Country" : "India", "Score" : "62" }
+B) Projector:
+> db.student.find({"Gender":"F"},{"Name":"1","Age":"1"})
+C) Sort:
+> db.student.find({"Gender":"F"},{"Name":"1","Age":"1"}).sort({"Age":1})
+> db.student.find({"Gender":"F"},{"Name":"1","Age":"1"}).sort({"Age":-1})
+D). Limit()
+> db.student.find({"Gender":"F",$or:[{"Class":"D"},{"Class":"A"}]}).limit(2)
+E) Skip()
+> db.student.find({"Gender":"F",$or:[{"Class":"D"},{"Class":"A"}]}).limit(1).skip(0)
+F)findOne():
+> db.student.findOne({"Gender":"F"},{"Name":1,"Age":1})
+G) .pretty():
+> db.student.find().pretty()
+
+ 
