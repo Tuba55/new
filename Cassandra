@@ -1,1 +1,65 @@
+*keyspace*
+use users;
+
+*creating table*
+create table if not exists bigdata
+(
+email Text,
+name Text,
+password Text,
+user_id UUID,
+primary key((email))
+);
+
+**
+desc bigdata;
+CREATE TABLE users.bigdata (
+                           email text PRIMARY KEY,
+                           name text,
+                           password text,
+                           user id uuid
+) WITH additional_write_policy = '99p'
+                           AND bloom filter_fp_chance
+                           AND caching = {'keys': 'ALL', 'rows_per_partition": "NONE"}
+                           0.01
+                           AND comment
+                           AND compaction('class': 'org.apache.cassandra.db.compaction.Unified CompactionStrategy'}
+                           AND compression = {'chunk_length_in_kb': '16', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+                           AND crc check chance = 1.0
+                           AND default time to live = 8
+                           AND gc_grace_seconds 864000
+                           AND max index_interval = 2048
+                           AND memtable_flush_period_in_ms = 0
+                           AND min index interval
+                           AND read_repair 'BLOCKING
+                           128
+                           AND speculative_retry = '99p';
+
+*Inserts:*
+insert into bigdata (email, name, password, user_id)
+values('g13.tia.mishra@gnkhalsa.edu.in', 'tia', 'edf',33333332-1111-1111-1111-333333333332);
+insert into bigdata (email, name, password, user_id)
+values('g27.moni.shukla@gnkhalsa.edu.in','mani', 'xyz', 62222222-1111-1111-1111-662222222222);
+insert into bigdata (email, name, password, user_id)
+g44.shri.shrama@gnkhalsa.edu.in', 'shri','pqr', 77222222-1111-1111-1111-662222222276);
+select * from bigdata;
+
+*update*
+update bigdata
+set name='Doner'
+where email = 'abc@gmal.com';
+select * from bigdata;
+
+*delete*
+delete from bigdata where email='abc@gmail.com';
+
+
+
+*Drop table*
+drop table bigdata;
+select* from 
+bigdata;
+
+
+
 
