@@ -1,0 +1,14 @@
+https://github.com/microsoftarchive/redis/releases
+
+Download redis x64-3.0.504.zip 
+Extract Redis server and run Redis -server 
+After clicking on redis-server then extract all  
+After extract click on redis-cli  
+Check whether reis is installed by using “ping command”  
+Setter and getter method to set keys and their values  
+Use key to find al, keys setted to the database 
+Use exists command  
+DELETE:  
+Use ttl 
+Use expire 
+Now put seconds value in expire and check
