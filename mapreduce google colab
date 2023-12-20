@@ -1,15 +1,134 @@
-Step 1: open “google colab” and select “New Notebook”
 
-Step 2: 
-Step 3:
-Step 4:
-Step 5: Go to left panel and create new file named ”input.txt ” and 
+
+Practical
+Aim 9 : Implementation of mapReduce using Google Colab
+December 19, 2023
+ Link for the step wise code 
+
+https://github.com/DeltaOptimist/Implement-word-count-frequency-programs-using-MapReduce/blob/main/Word_Count_PySpark.ipynb
+
+
+
+
+
+Step: open “google colab” and select “New Notebook”
+
+Step 1
+
+pip install pyspark
+
+
+
+Step2
+
+
+
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.master("local[*]").getOrCreate()
+
+
+
+Step3
+
+from pyspark import SparkContext
+
+sc = SparkContext.getOrCreate()
+
+
+
+Step : Go to left panel and create new file named ”input.txt ” and
+
 insert some some text inside.
-Step 6: copy the path of input.txt 
-Step 7:
-Step 8: 
-Step 9: 
-Step 10:
-Step 11:
-Step 12: 
-Step 13:
+
+
+
+Step: copy the path of input.txt 
+
+
+
+Step 4
+
+Words=sc.textFile("/content/input.txt")
+
+
+
+Step 5
+
+Words.collect()
+
+
+
+Step 5
+
+WordsCount=Words.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1))
+
+WordsCount.count()
+
+
+
+Step6:
+
+WordsCount.collect()
+
+
+
+Step 7
+
+
+
+DistinctWordsCount=WordsCount.reduceByKey(lambda a,b: a+b)
+
+DistinctWordsCount.count()
+
+
+
+Step 8
+
+DistinctWordsCount.collect()
+
+
+
+Step 9
+
+
+
+SortedWordsCount=DistinctWordsCount.map(lambda a: (a[1], a[0])).sortByKey()
+
+SortedWordsCount.top(5)
+
+
+
+Step 10
+
+SortedWordsCount.collect()
+
+
+
+Step 11
+
+print most frequent 20 words
+
+SortedWordsCount.top(20)
+
+     
+
+     .
+
+
+Comments
+
+Popular posts from this blog
+basic of mongodb Aim2 .Create Database
+December 19, 2023
+  Step 1 Use practicals Step 2 db.createColection("students") Step 3 INSERT DOCUMENT db.Collection.insert() db.student.insert({"Name":"max","Age":22,"class":"C","Gender":"M"}) Make 4 table  Step 4 FIND DATA db.student.find() Step 5 UPDATE DOCUMENT db.collection.update() db.student.update({"Age":20},set:{"Age":22}})
+READ MORE
+Aim 6:CASSANDRA
+December 19, 2023
+ 1)Installation Download Cassandra from https://auth.cloud.datastax.com/ and sign in using email id 2)Create Database 3)CQL console 4) use users; 5)Create table create table if not exists bigdata ( email Text, name Text, password Text, user_id UUID, primary key((email)) ); desc bigdata: used for describing our table 6)Insert insert into bigdata(email,name,password,user_id) values('abc@gmail.com','Don','abcd',11111111-1111-1111-1111-111111111111); select * from bigdata; 7.Update update bigdata set name='Doner' where email = 'abc@gmal.com'; select * from bigdata; 8.Delete delete from bigdata where email='abc@gmail.com'; 9.Drop table drop table bigdata; select* from  bigdata;
+READ MORE
+ Powered by Blogger
+Theme images by Michael Elkan
+PRACTICALEXAM12
+VISIT PROFILE
+Archive
+Report Abuse
