@@ -1,0 +1,63 @@
+Step 1
+
+create database in mongo compass
+
+step2
+
+Add data using Monoshell
+
+step 3
+use Msc-BDA
+
+step 4
+
+Inserting values
+db.Sales.insert({"id":12,"item":"Soap","price":10,"Quantity":2,"date":ISO
+Date("2014-01-01T08:00:00Z")})
+db.Sales.insert({"id":13,"item":"Soap","price":20,"Quantity":2,"date":ISO
+Date("2014-02-01T09:00:00Z")})
+db.Sales.insert({"id":17,"item":"Shampoo","price":50,"Quantity":1,"date"
+:ISODate("2015-01-01T09:00:00Z")})
+db.Sales.insert({"id":18,"item":"Biscuit","price":90,"Quantity":4,"date":IS
+ODate("2016-01-01T09:00:00Z")})
+db.Sales.insert({"id":8,"item":"Toffee","price":80,"Quantity":7,"date":ISO
+Date("2016-03-01T09:00:00Z")})
+db.Sales.insert({"id":9,"item":"Facewash","price":100,"Quantity":1,"date"
+:ISODate("2016-09-01T09:00:00Z")})
+db.Sales.insert({"id":10,"item":"Facewash","price":100,"Quantity":1,"date
+":ISODate("2017-09-01T09:00:00Z")})
+db.Sales.insert({"id":23,"item":"Toffee","price":50,"Quantity":5,"date":IS
+ODate("2016-04-01T09:00:00Z")})
+db.Sales.insert({"id":98,"item":"Biscuit","price":290,"Quantity":14,"date":
+ISODate("2016-05-01T09:00:00Z")})
+db.Sales.insert({"id":27,"item":"Shampoo","price":100,"Quantity":2,"date
+":ISODate("2015-01-01T09:00:00Z")})
+
+
+step 5
+db.sales.find()
+
+step 6
+4)The aggregate() Method
+For the aggregation in MongoDB, you should
+use aggregate() method.
+Syntax:
+Basic syntax of aggregate() method is as follows −
+>db.COLLECTION_NAME.aggregate(AGGREGATE_OPERATI
+ON)
+
+step 7
+sum
+>db.Sales.aggregate([{$group:{_id:"$item",sumPrice:{$sum:"$price"}} }])
+
+step 8
+avg
+> db.Sales.aggregate([{$group:{_id:"$item",AVG:{$avg:"$price"}}}])
+
+step 9
+min
+> db.Sales.aggregate([{$group:{_id:"$item",Min:{$min:"$price"}}}])
+
+step 10
+> db.Sales.aggregate([{$group:{_id:"$item",Max:{$max:"$price"}}}])
+
