@@ -1,3 +1,8 @@
+AIM: Implement Minimum sampling tree
+
+Theory:
+A minimum spanning tree (MST) or minimum weight spanning tree is a subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.
+
 import networkx as nx
 def minimum_spanning_tree(vertices, edges):
     G = nx.Graph()
@@ -13,7 +18,7 @@ for edge in mst:
     pass
 print(edge)
 
-//Aim: Implement best rank K approximation
+//3Aim: Implement best rank K approximation
 Theory:Non-uniform models of random graphs are those where the probability of a particular graph being generated is not the same for all possible graphs. In other words, the distribution of graphs is not uniform. These models are used to generate graphs that more closely resemble real-world networks, which often exhibit non-uniform characteristics.
 
 #pip install scikit-learn
@@ -36,7 +41,33 @@ model.fit(X_train, y_train)
 # Evaluate the model on the test data
 test_score = model.score(X_test, y_test)
 print('Test score:', test_score)
+                                       PRACTICAL NO.2
+Aim: Implement random graph showing large graph and cycles
 
+Theory: A random graph is a graph in which properties such as the number of graph vertices, graph edges, and connections between them are determined in some random way. Random graphs are used in many areas of science and engineering to model real-world networks, such as social networks, the Internet, and biological networks.
+
+import networkx as nx
+import random
+import matplotlib.pyplot as plt
+
+# Generate a random graph with 1000 nodes and 2000 edges
+G = nx.gnm_random_graph(1000, 2000)
+
+# Add some cycles to the graph
+for i in range(10):
+    cycle_len = random.randint(3, 10)
+    cycle_nodes = random.sample(range(1000), cycle_len)
+    for j in range(cycle_len):
+        G.add_edge(cycle_nodes[j], cycle_nodes[(j + 1) % cycle_len])
+
+# Draw the graph using a spring layout algorithm
+pos = nx.spring_layout(G)
+nx.draw(G, pos, node_size=10)
+
+# Show the graph
+plt.show()
+
+pract4
 //Aim: Implement best rank K approximation
 Theory:Non-uniform models of random graphs are those where the probability of a particular graph being generated is not the same for all possible graphs. In other words, the distribution of graphs is not uniform. These models are used to generate graphs that more closely resemble real-world networks, which often exhibit non-uniform characteristics.
 
