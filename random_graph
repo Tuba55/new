@@ -1,0 +1,20 @@
+import networkx as nx
+import random
+import matplotlib.pyplot as plt
+
+# Generate a random graph with 1000 nodes and 2000 edges
+G = nx.gnm_random_graph(1000, 2000)
+
+# Add some cycles to the graph
+for i in range(10):
+    cycle_len = random.randint(3, 10)
+    cycle_nodes = random.sample(range(1000), cycle_len)
+    for j in range(cycle_len):
+        G.add_edge(cycle_nodes[j], cycle_nodes[(j + 1) % cycle_len])
+
+# Draw the graph using a spring layout algorithm
+pos = nx.spring_layout(G)
+nx.draw(G, pos, node_size=10)
+
+# Show the graph
+plt.show()
