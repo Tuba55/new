@@ -12,3 +12,162 @@ mst = minimum_spanning_tree(vertices, edges)
 for edge in mst:
     pass
 print(edge)
+
+//Aim: Implement best rank K approximation
+Theory:Non-uniform models of random graphs are those where the probability of a particular graph being generated is not the same for all possible graphs. In other words, the distribution of graphs is not uniform. These models are used to generate graphs that more closely resemble real-world networks, which often exhibit non-uniform characteristics.
+
+#pip install scikit-learn
+from sklearn.linear_model import LogisticRegression
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+# Load the iris dataset
+iris = load_iris()
+
+# Split the dataset into the training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2, random_state=42)
+
+# Create a logistic regression model with L2 regularization
+model = LogisticRegression(solver='lbfgs', max_iter=3000)
+
+# Fit the model to the training data
+model.fit(X_train, y_train)
+
+# Evaluate the model on the test data
+test_score = model.score(X_test, y_test)
+print('Test score:', test_score)
+
+//Aim: Implement best rank K approximation
+Theory:Non-uniform models of random graphs are those where the probability of a particular graph being generated is not the same for all possible graphs. In other words, the distribution of graphs is not uniform. These models are used to generate graphs that more closely resemble real-world networks, which often exhibit non-uniform characteristics.
+
+#pip install scikit-learn
+from sklearn.random_projection import GaussianRandomProjection
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+# Load the iris dataset
+iris = load_iris()
+
+# Split the dataset into the training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2, random_state=42)
+
+# Create a random projection model object
+random_proj = GaussianRandomProjection(n_components=3)
+
+# Apply random projection to the data
+X_train_proj = random_proj.fit_transform(X_train)
+
+# Print the shape of the projected data
+print('Shape of X_train_proj:', X_train_proj.shape)
+
+
+PRACTICAL NO. 5
+AIM:  Show implementation of Sphere and cube in high dimensional space.
+Theory: High-dimensional space refers to a space where each point is defined by a large number of coordinates or dimensions. In such spaces, distances between points can become difficult to intuitively grasp, and many phenomena, such as the curse of dimensionality, can arise.
+
+import numpy as np
+
+# Generating random points within a sphere of radius 5
+center = np.zeros(10)
+radius = 5
+points = np.random.randn(1000, 10)
+points = radius * points / np.linalg.norm(points, axis=1)[:, np.newaxis] + center
+print("Random points within a sphere of radius 5:")
+print(points)
+
+# Generate random points within a cube of size 10
+center = np.zeros(10)
+size = 10
+points = np.random.uniform(-size/2, size/2, (1000, 10)) + center
+print("Random points within a cube of size 10:")
+print(points)
+
+                          PRACTICAL NO 6
+Aim: Implement best rank K approximation
+Theory:The best rank-k approximation of a matrix refers to finding the closest approximation of that matrix using another matrix of rank at most k. In other words, it's about finding a lower-rank matrix that approximates the original matrix as closely as possible.
+
+import numpy as np
+
+def best_rank_k_approx(A, k):
+    U, S, VT = np.linalg.svd(A, full_matrices=False)
+    S[k:] = 0
+    return U @ np.diag(S) @ VT
+
+# Example usage:
+A = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
+k = 2
+A_k = best_rank_k_approx(A, k)
+print(A_k)
+
+                                  PRACTICAL NO.7
+Aim: Implement SVD on any suitable dataset and show power method for computing SVD on the dataset
+Theory:Singular Value Decomposition (SVD) is a matrix factorization technique that decomposes a matrix into three other matrices: a left singular matrix, a diagonal matrix of singular values, and a right singular matrix.
+
+import numpy as np
+
+# create a random matrix
+A = np.random.rand(4, 3)
+
+# compute the SVD of A
+U, S, V = np.linalg.svd(A)
+
+# print the results
+print("U:\n", U)
+print("S:\n", S)
+print("V:\n", V)
+
+                                     PRACTICAL NO.8
+Aim: Implement SVD on any suitable dataset and show power method for computing SVD on the dataset
+Theory:The power method on the Singular Value Decomposition (SVD) is an iterative algorithm used to approximate the largest singular value and corresponding singular vector of a matrix.
+import numpy as np
+
+# Generate a random matrix
+X = np.random.rand(100, 50)
+
+# Compute the SVD using numpy
+U, S, V = np.linalg.svd(X)
+
+# Print the singular values
+print("Singular values:", S)
+
+# Implement the power method for computing the SVD
+tol = 1e-6  # Tolerance for convergence
+max_iter = 1000  # Maximum number of iterations
+k = 5  # Number of singular values to compute
+
+# Initialize the vector for the power method
+v = np.random.rand(X.shape[1])
+
+# Iterate until convergence or maximum number of iterations reached
+for i in range(max_iter):
+    # Compute the matrix-vector product
+    Xv = X.T @ X @ v
+
+    # Compute the norm of the resulting vector
+    norm = np.linalg.norm(Xv)
+
+    # Normalize the vector
+    v = Xv / norm
+
+    # Compute the singular value
+    sigma = np.linalg.norm(X @ v)
+
+    # Check for convergence
+    if i > 0 and abs(sigma - prev_sigma) < tol:
+        break
+
+    # Store the previous singular value
+    prev_sigma = sigma
+
+    # Print the current singular value
+    print("Singular value:", sigma)
+
+    # Compute the corresponding left and right singular vectors
+    u = X @ v / sigma
+
+    # Print the left and right singular vectors
+    print("Left singular vector:", u)
+    print("Right singular vector:", v)
+
+
+
