@@ -1,0 +1,14 @@
+import networkx as nx
+def minimum_spanning_tree(vertices, edges):
+    G = nx.Graph()
+    G.add_nodes_from(vertices)
+    G.add_weighted_edges_from(edges)
+    return list(nx.minimum_spanning_edges(G, algorithm='kruskal'))
+
+# Example usage
+vertices = ['A', 'B', 'C', 'D', 'E', 'F']
+edges = [('A', 'B', 2), ('A', 'D', 6), ('B', 'D', 8), ('B', 'E', 5), ('B', 'C', 3), ('C', 'E', 7), ('C', 'F', 9), ('D', 'E', 9), ('E', 'F', 4)]
+mst = minimum_spanning_tree(vertices, edges)
+for edge in mst:
+    pass
+print(edge)
