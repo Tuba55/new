@@ -51,7 +51,7 @@ my_data %>%
     IQR_sep = IQR(Sepal.Length),
     IQR_pet = IQR(Petal.Length)
   )
-Prac 2:Applying stepwise linear regression models to real dataset and interpreting the coefficient of determination for scale data 
+Prac 2:Applying stepwise linear regression models to real dataset and interpreting the coefficient of determination for scale data (Done)
 
 # Initialize an empty model 
 forward_model <- lm(mpg ~ ., data = mtcars) # Forward stepwise regression 
