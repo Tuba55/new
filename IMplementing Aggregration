@@ -1,63 +1,440 @@
-Step 1
+---------Pract-1
 
-create database in mongo compass
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
 
-step2
+# Q1: Fit a classification model using K Nearest Neighbour (KNN) Algorithm on the Smarket dataset
+smarket_df = pd.read_csv("Smarket.csv")
 
-Add data using Monoshell
+# Preprocessing: Extract features and target variable
+X = smarket_df[['Lag1', 'Lag2', 'Lag3', 'Lag4', 'Lag5', 'Volume']].values
+y = smarket_df['Direction'].map({'Up': 1, 'Down': 0}).values
 
-step 3
-use Msc-BDA
+# Split dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-step 4
+# Feature scaling
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
 
-Inserting values
-db.Sales.insert({"id":12,"item":"Soap","price":10,"Quantity":2,"date":ISO
-Date("2014-01-01T08:00:00Z")})
-db.Sales.insert({"id":13,"item":"Soap","price":20,"Quantity":2,"date":ISO
-Date("2014-02-01T09:00:00Z")})
-db.Sales.insert({"id":17,"item":"Shampoo","price":50,"Quantity":1,"date"
-:ISODate("2015-01-01T09:00:00Z")})
-db.Sales.insert({"id":18,"item":"Biscuit","price":90,"Quantity":4,"date":IS
-ODate("2016-01-01T09:00:00Z")})
-db.Sales.insert({"id":8,"item":"Toffee","price":80,"Quantity":7,"date":ISO
-Date("2016-03-01T09:00:00Z")})
-db.Sales.insert({"id":9,"item":"Facewash","price":100,"Quantity":1,"date"
-:ISODate("2016-09-01T09:00:00Z")})
-db.Sales.insert({"id":10,"item":"Facewash","price":100,"Quantity":1,"date
-":ISODate("2017-09-01T09:00:00Z")})
-db.Sales.insert({"id":23,"item":"Toffee","price":50,"Quantity":5,"date":IS
-ODate("2016-04-01T09:00:00Z")})
-db.Sales.insert({"id":98,"item":"Biscuit","price":290,"Quantity":14,"date":
-ISODate("2016-05-01T09:00:00Z")})
-db.Sales.insert({"id":27,"item":"Shampoo","price":100,"Quantity":2,"date
-":ISODate("2015-01-01T09:00:00Z")})
+# Train KNN classifier
+k = 3  # Number of neighbors
+knn_model = KNeighborsClassifier(n_neighbors=k)
+knn_model.fit(X_train_scaled, y_train)
+
+# Predictions
+y_pred = knn_model.predict(X_test_scaled)
+
+# Evaluate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Q1: Accuracy on Smarket dataset:", accuracy)
 
 
-step 5
-db.sales.find()
+# Q2: Fit a classification model using K Nearest Neighbour (KNN) Algorithm on the Weekly dataset
+weekly_df = pd.read_csv("Weekly.csv")
 
-step 6
-4)The aggregate() Method
-For the aggregation in MongoDB, you should
-use aggregate() method.
-Syntax:
-Basic syntax of aggregate() method is as follows −
->db.COLLECTION_NAME.aggregate(AGGREGATE_OPERATI
-ON)
+# Preprocessing: Extract features and target variable
+X = weekly_df.drop(['Direction', 'Year', 'Today'], axis=1).values
+y = weekly_df['Direction'].map({'Up': 1, 'Down': 0}).values
 
-step 7
-sum
->db.Sales.aggregate([{$group:{_id:"$item",sumPrice:{$sum:"$price"}} }])
+# Split dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-step 8
-avg
-> db.Sales.aggregate([{$group:{_id:"$item",AVG:{$avg:"$price"}}}])
+# Feature scaling
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
 
-step 9
-min
-> db.Sales.aggregate([{$group:{_id:"$item",Min:{$min:"$price"}}}])
+# Train KNN classifier
+k = 3  # Number of neighbors
+knn_model = KNeighborsClassifier(n_neighbors=k)
+knn_model.fit(X_train_scaled, y_train)
 
-step 10
-> db.Sales.aggregate([{$group:{_id:"$item",Max:{$max:"$price"}}}])
+# Predictions
+y_pred = knn_model.predict(X_test_scaled)
+
+# Evaluate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Q2: Accuracy on Weekly dataset:", accuracy)
+
+
+# Q3: Fit a classification model using K Nearest Neighbour (KNN) Algorithm on the Iris dataset
+from sklearn.datasets import load_iris
+
+# Load iris dataset
+iris = load_iris()
+
+# Preprocessing: Extract features and target variable
+X = iris.data
+y = iris.target
+
+# Split dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train KNN classifier
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
+
+# Predictions
+y_pred = knn.predict(X_test)
+
+# Evaluate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Q3: Accuracy on Iris dataset:", accuracy)
+
+
+------------pract-3-perform cross validaton and its types
+
+import numpy as np
+from sklearn.model_selection import KFold, StratifiedKFold, LeaveOneOut
+
+# Sample data
+x = np.array([[1, 2], [3, 4], [5, 6], [7, 8]])
+y = np.array([1, 2, 1, 2])
+
+# Function to print cross-validation scores
+def print_scores(scores):
+    print("Cross-validation scores: ", scores)
+    print("Mean Accuracy: ", np.mean(scores))
+
+# Function to train a dummy model and evaluate accuracy
+def train_and_evaluate(x_train, y_train, x_test, y_test):
+    # Dummy model training (e.g., always predicting the same class)
+    predicted_labels = np.ones(len(y_test))  # Dummy prediction, always predicts class 1
+    accuracy = np.mean(predicted_labels == y_test)  # Dummy accuracy calculation
+    return accuracy
+
+# Perform k-fold cross-validation
+def k_fold_cross_validation(x, y, k):
+    kf = KFold(n_splits=k)
+    scores = []
+    for train_index, test_index in kf.split(x):
+        x_train, x_test = x[train_index], x[test_index]
+        y_train, y_test = y[train_index], y[test_index]
+
+        accuracy = train_and_evaluate(x_train, y_train, x_test, y_test)
+        scores.append(accuracy)
+    print_scores(scores)
+
+# Perform stratified k-fold cross-validation
+def stratified_k_fold_cross_validation(x, y, k):
+    skf = StratifiedKFold(n_splits=k)
+    scores = []
+    for train_index, test_index in skf.split(x, y):
+        x_train, x_test = x[train_index], x[test_index]
+        y_train, y_test = y[train_index], y[test_index]
+
+        accuracy = train_and_evaluate(x_train, y_train, x_test, y_test)
+        scores.append(accuracy)
+    print_scores(scores)
+
+# Perform leave-one-out cross-validation
+def leave_one_out_cross_validation(x, y, k):
+    loo = LeaveOneOut()
+    scores = []
+    for train_index, test_index in loo.split(x):
+        x_train, x_test = x[train_index], x[test_index]
+        y_train, y_test = y[train_index], y[test_index]
+
+        accuracy = train_and_evaluate(x_train, y_train, x_test, y_test)
+        scores.append(accuracy)
+    print_scores(scores)
+
+# Example usage
+print("K-Fold Cross-Validation:")
+k_fold_cross_validation(x, y, k=2)
+
+print("\nStratified K-Fold Cross-Validation:")
+stratified_k_fold_cross_validation(x, y, k=2)
+
+print("\nLeave-One-Out Cross-Validation:")
+leave_one_out_cross_validation(x, y, k=2)
+ 
+
+-----------pract-8-evaluate the performance of a model using boosting,bagging,random forest
+
+import numpy as np
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import AdaBoostClassifier, BaggingClassifier, RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Generate some random classification data
+X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, random_state=42)
+
+# Split data into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Define classifiers
+boosting_classifier = AdaBoostClassifier(n_estimators=50, random_state=42)
+bagging_classifier = BaggingClassifier(n_estimators=50, random_state=42)
+random_forest_classifier = RandomForestClassifier(n_estimators=50, random_state=42)
+
+# Train classifiers
+boosting_classifier.fit(X_train, y_train)
+bagging_classifier.fit(X_train, y_train)
+random_forest_classifier.fit(X_train, y_train)
+
+# Predictions
+boosting_pred = boosting_classifier.predict(X_test)
+bagging_pred = bagging_classifier.predict(X_test)
+random_forest_pred = random_forest_classifier.predict(X_test)
+
+# Evaluate performance
+boosting_accuracy = accuracy_score(y_test, boosting_pred)
+bagging_accuracy = accuracy_score(y_test, bagging_pred)
+random_forest_accuracy = accuracy_score(y_test, random_forest_pred)
+
+# Print results
+print("Boosting Accuracy:", boosting_accuracy)
+print("Bagging Accuracy:", bagging_accuracy)
+print("Random Forest Accuracy:", random_forest_accuracy)
+2--
+import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import AdaBoostClassifier, BaggingClassifier, RandomForestClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+# Load the iris dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Split data into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Define classifiers
+boosting_classifier = AdaBoostClassifier(n_estimators=50, random_state=42)
+bagging_classifier = BaggingClassifier(n_estimators=50, random_state=42)
+random_forest_classifier = RandomForestClassifier(n_estimators=50, random_state=42)
+
+# Train classifiers
+boosting_classifier.fit(X_train, y_train)
+bagging_classifier.fit(X_train, y_train)
+random_forest_classifier.fit(X_train, y_train)
+
+# Predictions
+boosting_pred = boosting_classifier.predict(X_test)
+bagging_pred = bagging_classifier.predict(X_test)
+random_forest_pred = random_forest_classifier.predict(X_test)
+
+# Evaluation metrics
+def print_metrics(name, y_true, y_pred):
+    accuracy = accuracy_score(y_true, y_pred)
+    precision = precision_score(y_true, y_pred, average='macro')
+    recall = recall_score(y_true, y_pred, average='macro')
+    f1 = f1_score(y_true, y_pred, average='macro')
+
+    print(name + " Performance:")
+    print("Accuracy:", accuracy)
+    print("Precision:", precision)
+    print("Recall:", recall)
+    print("F1 Score:", f1)
+    print()
+
+# Print metrics for each classifier
+print_metrics("Boosting", y_test, boosting_pred)
+print_metrics("Bagging", y_test, bagging_pred)
+print_metrics("Random Forest", y_test, random_forest_pred)
+
+
+
+---------------pract 7-Implement Neural Networks
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris, make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.optimizers import Adam
+
+# First Snippet
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+encoder = OneHotEncoder()
+y = encoder.fit_transform(y.reshape(-1, 1)).toarray()
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = Sequential([
+    Dense(10, input_shape=(X_train.shape[1],), activation='relu'),
+    Dense(8, activation='relu'),
+    Dense(3, activation='softmax')
+])
+
+model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
+
+history = model.fit(X_train, y_train, batch_size=5, epochs=50, verbose=1, validation_data=(X_test, y_test))
+
+y_prob = model.predict(X_test)
+y_pred = np.argmax(y_prob, axis=1)
+
+def evaluate(y_true, y_pred, y_prob):
+    cm = confusion_matrix(y_true, y_pred)
+    print("Confusion Matrix:")
+    print(cm)
+
+    acc = accuracy_score(y_true, y_pred)
+    print("Accuracy:", acc)
+
+    precision = precision_score(y_true, y_pred, average='weighted')
+    print("Precision:", precision)
+
+    recall = recall_score(y_true, y_pred, average='weighted')
+    print("Recall:", recall)
+
+    f1 = f1_score(y_true, y_pred, average='weighted')
+    print("F1 Score:", f1)
+
+evaluate(np.argmax(y_test, axis=1), y_pred, y_prob)
+
+plt.plot(history.history['accuracy'], label='accuracy')
+plt.plot(history.history['val_accuracy'], label='val_accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend(loc='lower right')
+plt.show()
+
+
+# Second Snippet
+X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, random_state=42)
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = Sequential([
+    Dense(10, input_shape=(X_train.shape[1],), activation='relu'),
+    Dense(8, activation='relu'),
+    Dense(1, activation='sigmoid')
+])
+
+model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['accuracy'])
+
+history = model.fit(X_train, y_train, batch_size=32, epochs=50, verbose=1, validation_data=(X_test, y_test))
+
+y_prob = model.predict(X_test)
+y_pred = np.round(y_prob).flatten()
+
+def evaluate(y_true, y_pred, y_prob):
+    cm = confusion_matrix(y_true, y_pred)
+    print("Confusion Matrix:")
+    print(cm)
+
+    acc = accuracy_score(y_true, y_pred)
+    print("Accuracy:", acc)
+
+    precision = precision_score(y_true, y_pred)
+    print("Precision:", precision)
+
+    recall = recall_score(y_true, y_pred)
+    print("Recall:", recall)
+
+    f1 = f1_score(y_true, y_pred)
+    print("F1 Score:", f1)
+
+evaluate(y_test, y_pred, y_prob)
+
+plt.plot(history.history['accuracy'], label='accuracy')
+plt.plot(history.history['val_accuracy'], label='val_accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend(loc='lower right')
+plt.show()
+
+
+----------pract 4--Fit a classification model using KNN Algoritham
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# Q1: Fit a classification model using K Nearest Neighbour (KNN) Algorithm on the Smarket dataset
+smarket_df = pd.read_csv("Smarket.csv")
+
+# Preprocessing: Extract features and target variable
+X = smarket_df[['Lag1', 'Lag2', 'Lag3', 'Lag4', 'Lag5', 'Volume']].values
+y = smarket_df['Direction'].map({'Up': 1, 'Down': 0}).values
+
+# Split dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Feature scaling
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Train KNN classifier
+k = 3  # Number of neighbors
+knn_model = KNeighborsClassifier(n_neighbors=k)
+knn_model.fit(X_train_scaled, y_train)
+
+# Predictions
+y_pred = knn_model.predict(X_test_scaled)
+
+# Evaluate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Q1: Accuracy on Smarket dataset:", accuracy)
+
+
+# Q2: Fit a classification model using K Nearest Neighbour (KNN) Algorithm on the Weekly dataset
+weekly_df = pd.read_csv("Weekly.csv")
+
+# Preprocessing: Extract features and target variable
+X = weekly_df.drop(['Direction', 'Year', 'Today'], axis=1).values
+y = weekly_df['Direction'].map({'Up': 1, 'Down': 0}).values
+
+# Split dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Feature scaling
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Train KNN classifier
+k = 3  # Number of neighbors
+knn_model = KNeighborsClassifier(n_neighbors=k)
+knn_model.fit(X_train_scaled, y_train)
+
+# Predictions
+y_pred = knn_model.predict(X_test_scaled)
+
+# Evaluate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Q2: Accuracy on Weekly dataset:", accuracy)
+
+
+# Q3: Fit a classification model using K Nearest Neighbour (KNN) Algorithm on the Iris dataset
+from sklearn.datasets import load_iris
+
+# Load iris dataset
+iris = load_iris()
+
+# Preprocessing: Extract features and target variable
+X = iris.data
+y = iris.target
+
+# Split dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train KNN classifier
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
+
+# Predictions
+y_pred = knn.predict(X_test)
+
+# Evaluate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Q3: Accuracy on Iris dataset:", accuracy)
 
